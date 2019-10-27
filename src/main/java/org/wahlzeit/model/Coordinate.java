@@ -18,7 +18,7 @@ public class Coordinate {
     public double getZ(){
         return z;
     }
-    public double getDistance(Coordinate coordinate){
+    protected double getDistance(Coordinate coordinate){
 
         double distance =  Math.sqrt( Math.pow(this.getX() - coordinate.getX(), 2) + Math.pow( this.getY() - coordinate.getY(), 2) + Math.pow(this.getZ() - coordinate.getZ(), 2));
         return distance;
@@ -33,7 +33,7 @@ public class Coordinate {
             return isEqual(c);
         }
     }
-    public boolean isEqual(Coordinate coordinate){
+    protected boolean isEqual(Coordinate coordinate){
         if (coordinate.getX() == this.x && coordinate.getY() == this.y && coordinate.getZ() == this.z){
             return true;
         }else {
