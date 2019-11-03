@@ -19,10 +19,16 @@
  */
 package org.wahlzeit.services.mailing;
 
+import com.google.appengine.repackaged.com.google.protobuf.Service;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.wahlzeit.services.EmailAddress;
+import org.wahlzeit.services.Session;
+
+import javax.mail.Message;
+import javax.mail.internet.MimeMessage;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -31,11 +37,16 @@ public class EmailServiceTest {
 
 	EmailService emailService = null;
 	EmailAddress validAddress = null;
+	EmailAddress bccAddress = null;
+	Session session =null;
+	SmtpEmailService smtp = new SmtpEmailService();
+
 
 	@Before
 	public void setup() throws Exception {
 		emailService = EmailServiceManager.getDefaultService();
 		validAddress = EmailAddress.getFromString("test@test.de");
+		bccAddress = EmailAddress.getFromString("test@test.de");
 	}
 
 	@Test
@@ -57,4 +68,27 @@ public class EmailServiceTest {
 			Assert.fail("Silent mode does not allow exceptions");
 		}
 	}
-}
+	@Test
+
+	public void testSendInvalidEmail_withBCC() {
+		try {
+			assertFalse(emailService.sendEmailIgnoreException(validAddress, null, bccAddress, "lol", "hi"));
+			assertFalse(emailService.sendEmailIgnoreException(null, validAddress, bccAddress, null, "body"));
+			assertFalse(emailService.sendEmailIgnoreException(validAddress, null, bccAddress, "hi", "       "));
+		} catch (Exception ex) {
+			Assert.fail("Silent mode does not allow exceptions");
+		}
+	}
+
+
+	@Test
+	public void testSendValidEmail_withBCC() {
+			try {
+				assertTrue(emailService.sendEmailIgnoreException(validAddress, validAddress, bccAddress, "hi", "test"));
+			} catch (Exception ex) {
+				Assert.fail("Silent mode does not allow exceptions");
+			}
+		}
+
+
+	}

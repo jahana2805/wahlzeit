@@ -100,7 +100,6 @@ public class EmailAddress implements Serializable {
 		} catch (AddressException ex) {
 			// should not happen
 		}
-
 		return result;
 	}
 
