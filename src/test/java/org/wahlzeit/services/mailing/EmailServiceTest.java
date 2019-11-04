@@ -70,7 +70,7 @@ public class EmailServiceTest {
 	}
 	@Test
 
-	public void testSendInvalidEmail_withBCC() {
+	public void testSendInvalidBCC() {
 		try {
 			assertFalse(emailService.sendEmailIgnoreException(validAddress, null, bccAddress, "lol", "hi"));
 			assertFalse(emailService.sendEmailIgnoreException(null, validAddress, bccAddress, null, "body"));
@@ -82,7 +82,7 @@ public class EmailServiceTest {
 
 
 	@Test
-	public void testSendValidEmail_withBCC() {
+	public void testSendValidBCC() {
 			try {
 				assertTrue(emailService.sendEmailIgnoreException(validAddress, validAddress, bccAddress, "hi", "test"));
 			} catch (Exception ex) {
