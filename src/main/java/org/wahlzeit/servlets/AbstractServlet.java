@@ -43,7 +43,8 @@ import java.util.logging.Logger;
 /**
  * A servlet class.
  */
-public abstract class AbstractServlet extends HttpServlet {
+public abstract class
+AbstractServlet extends HttpServlet {
 
 	private static final Logger log = Logger.getLogger(AbstractServlet.class.getName());
 	private static final long serialVersionUID = 42L; // any does; class never serialized

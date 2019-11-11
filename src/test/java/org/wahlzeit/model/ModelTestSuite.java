@@ -8,6 +8,9 @@ import org.wahlzeit.model.persistence.DatastoreAdapterTest;
 
 @Suite.SuiteClasses({ AccessRightsTest.class,
         CoordinateTest.class,
+        CarPhotoTest.class,
+        CarPhotoFactoryTest.class,
+        CarPhotoManagerTest.class,
         FlagReasonTest.class,
         GenderTest.class,
         GuestTest.class,
