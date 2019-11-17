@@ -3,7 +3,7 @@ package org.wahlzeit.model;
 import org.junit.Test;
 
 public class LocationTest {
-    Coordinate c = new Coordinate(1.1, 2.2, 3.3);
+    Coordinate c = new CartesianCoordinate(1.1, 2.2, 3.3);
     Coordinate isNull;
     @Test
     public void location__setCoordinate() {

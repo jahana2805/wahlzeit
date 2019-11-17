@@ -7,7 +7,8 @@ import org.wahlzeit.model.persistence.DatastoreAdapterTest;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({ AccessRightsTest.class,
-        CoordinateTest.class,
+        CartesianCoordinateTest.class,
+        SphericCoordinateTest.class,
         CarPhotoTest.class,
         CarPhotoFactoryTest.class,
         CarPhotoManagerTest.class,
