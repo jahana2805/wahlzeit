@@ -39,7 +39,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    boolean doIsEqual(Coordinate coordinate) {
+   protected boolean doIsEqual(Coordinate coordinate) {
         CartesianCoordinate turnedToCartCoord = coordinate.asCartesianCoordinate();
         if (Double.isNaN(this.x) || Double.isNaN(turnedToCartCoord.getX()) || Double.isNaN(this.y) || Double.isNaN(turnedToCartCoord.getY()) || Double.isNaN(this.z) || Double.isNaN(turnedToCartCoord.getZ())) {
             return false;

@@ -41,7 +41,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 
 
     @Override
-    boolean doIsEqual(Coordinate coordinate) {
+    protected boolean doIsEqual(Coordinate coordinate) {
         SphericCoordinate turnedToSpheric = coordinate.asSphericCoordinate();
         if (Double.isNaN(this.phi) || Double.isNaN(turnedToSpheric.getPhi()) || Double.isNaN(this.theta) || Double.isNaN(turnedToSpheric.getTheta()) || Double.isNaN(this.radius) || Double.isNaN(turnedToSpheric.getRadius())) {
             return false;
