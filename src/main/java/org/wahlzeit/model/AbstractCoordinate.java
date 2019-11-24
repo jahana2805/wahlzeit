@@ -50,6 +50,6 @@ public abstract class AbstractCoordinate implements Coordinate {
             return this.doIsEqual(coordinate);
         }
     }
-    abstract boolean doIsEqual(Coordinate coordinate);
+    protected abstract boolean doIsEqual(Coordinate coordinate);
     public abstract int hashCode();
 }
