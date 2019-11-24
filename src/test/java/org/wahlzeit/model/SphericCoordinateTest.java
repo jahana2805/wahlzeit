@@ -21,16 +21,17 @@ public class SphericCoordinateTest {
         s3 = new SphericCoordinate(90.0,90.0,1000);
         isNull = null;
     }
-    @Test
+   @Test
     public void testGetCentralAngle() {
-       /* double delta_phi = Math.abs(s1.phi - s3.getPhi());
-        double delta_theta = Math.abs(s1.theta - s3.getTheta());
-        double expected = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(delta_phi / 2), 2) + Math.cos(s1.phi) * Math.cos(s3.getPhi()) * Math.pow(Math.sin(delta_theta / 2), 2)));*/
         Assert.assertEquals(2.18384117, s1.getCentralAngle(s3), epsilon);
     }
     @Test(expected = IllegalArgumentException.class)
-    public void testGetCentralAngle_Exception() {
-    s1.getCentralAngle(isNull);
+    public void testGetCentralAngle_NullException() {
+        s1.getCentralAngle(isNull);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetCentralAngle_LimitException() {
+       s1.getCentralAngle(s2);
     }
     @Test
     public void testAsSphericCoordinate() {
@@ -51,7 +52,9 @@ public class SphericCoordinateTest {
     @Test
     public void testEquals__diffObj(){
         Object o = "abc";
-        assertFalse(s1.equals(o));}
+        assertFalse(s1.equals(o));
+        assertFalse(s1.equals(isNull));
+    }
 
     @Test
     public void testEquals__Obj(){
@@ -70,9 +73,6 @@ public class SphericCoordinateTest {
     public void testAsCartesianCoordinate() {
         CartesianCoordinate cartesianCoordinate = s1.asCartesianCoordinate();
         assertTrue(cartesianCoordinate instanceof CartesianCoordinate);
-        double x = s1.getRadius() * Math.sin(s1.getTheta()) * Math.cos(s1.getPhi());
-        double y = s1.getRadius() * Math.sin(s1.getTheta()) * Math.sin(s1.getPhi());
-        double z = s1.getRadius() * Math.cos(s1.getTheta());
         Assert.assertEquals(-458.3086, cartesianCoordinate.getX(), epsilon);
         Assert.assertEquals(-613.5332, cartesianCoordinate.getY(), epsilon);
         Assert.assertEquals(472.78979, cartesianCoordinate.getZ(), epsilon);

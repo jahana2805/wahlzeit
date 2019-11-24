@@ -90,7 +90,7 @@ public class CartesianCoordinateTest {
         Assert.assertEquals(1.1562894, sphericCoordinate.getPhi(), epsilon);
     }
 
-    @Test
+   @Test
     public void testGetCentralAngle() {
         SphericCoordinate sphericCoordinate = new SphericCoordinate(180.0, 45.0, 900);
         Assert.assertEquals(2.787399, c1.getCentralAngle(sphericCoordinate), epsilon);
