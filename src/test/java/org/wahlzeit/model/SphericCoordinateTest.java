@@ -29,7 +29,7 @@ public class SphericCoordinateTest {
     public void testGetCentralAngle_NullException() {
         s1.getCentralAngle(isNull);
     }
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = AssertionError.class)
     public void testGetCentralAngle_LimitException() {
        s1.getCentralAngle(s2);
     }
@@ -39,21 +39,13 @@ public class SphericCoordinateTest {
     }
     @Test
     public void testIsEqual(){
-        SphericCoordinate s4 = new SphericCoordinate(180.0, Double.NaN, 900);
-        SphericCoordinate s5 = new SphericCoordinate(Double.NaN, 45.0,900);
-        SphericCoordinate s6 = new SphericCoordinate(180.0, 45.0, Double.NaN);
         assertTrue(s1.isEqual(s2));
         assertFalse(s1.isEqual(s3));
-        assertFalse(s4.isEqual(s1));
-        assertFalse(s5.isEqual(s1));
-        assertFalse(s6.isEqual(s1));
-        assertFalse(s1.isEqual(isNull));
     }
     @Test
     public void testEquals__diffObj(){
         Object o = "abc";
         assertFalse(s1.equals(o));
-        assertFalse(s1.equals(isNull));
     }
 
     @Test

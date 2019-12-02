@@ -2,12 +2,7 @@ package org.wahlzeit.handlers;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import org.wahlzeit.model.AccessRights;
-import org.wahlzeit.model.Administrator;
-import org.wahlzeit.model.Client;
-import org.wahlzeit.model.User;
-import org.wahlzeit.model.UserManager;
-import org.wahlzeit.model.UserSession;
+import org.wahlzeit.model.*;
 import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.webparts.WebPart;
 

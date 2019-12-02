@@ -36,15 +36,8 @@ public class CartesianCoordinateTest {
 
     @Test
     public void testIsEqual() {
-        CartesianCoordinate c4 = new CartesianCoordinate(5.5, Double.NaN, 2);
-        CartesianCoordinate c5 = new CartesianCoordinate(Double.NaN, 1, 2);
-        CartesianCoordinate c6 = new CartesianCoordinate(4.2, 5.5, Double.NaN);
         assertTrue(c1.isEqual(c2));
         assertFalse(c1.isEqual(c3));
-        assertFalse(c4.isEqual(c1));
-        assertFalse(c5.isEqual(c2));
-        assertFalse(c6.isEqual(c3));
-        assertFalse(c1.isEqual(isNull));
     }
 
     @Test
@@ -92,8 +85,8 @@ public class CartesianCoordinateTest {
 
    @Test
     public void testGetCentralAngle() {
-        SphericCoordinate sphericCoordinate = new SphericCoordinate(180.0, 45.0, 900);
-        Assert.assertEquals(2.787399, c1.getCentralAngle(sphericCoordinate), epsilon);
+        SphericCoordinate sphericCoordinate = new SphericCoordinate(Math.PI,Math.PI/4, 900);
+        Assert.assertEquals(1.962456, c1.getCentralAngle(sphericCoordinate), epsilon);
     }
 
     @Test(expected = IllegalArgumentException.class)
