@@ -21,6 +21,45 @@ public class SphericCoordinateTest {
         s3 = new SphericCoordinate(90.0,90.0,1000);
         isNull = null;
     }
+    @Test(expected = AssertionError.class)
+    public void testPhiIsOutOfRange() {
+        new SphericCoordinate(361.0, 90.0, 1000);
+    }
+    @Test(expected = AssertionError.class)
+    public void testThetaIsOutOfRange() {
+        new SphericCoordinate(90.0, 360.0, 1000);
+    }
+    @Test(expected = AssertionError.class)
+    public void testRadiusIsOutOfRange() {
+        new SphericCoordinate(90.0, 90.0, 0);
+    }
+    @Test(expected = AssertionError.class)
+    public void testPhiIsInfinity() {
+        new SphericCoordinate(Double.POSITIVE_INFINITY, 90.0, 1000);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testPhiIsDoubleNaN() {
+        new SphericCoordinate(Double.NaN, 90.0 , 1000);
+    }
+    @Test(expected = AssertionError.class)
+    public void testThetaIsInfinity() {
+        new SphericCoordinate( 90.0, Double.POSITIVE_INFINITY,1000);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testThetaIsDoubleNaN() {
+        new SphericCoordinate( 90.0 , Double.NaN,1000);
+    }
+    @Test(expected = AssertionError.class)
+    public void testRadiusIsInfinity() {
+        new SphericCoordinate( 90.0,90.0, Double.POSITIVE_INFINITY);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testRadiusIsDoubleNaN() {
+        new SphericCoordinate( 90.0,90.0 , Double.NaN);
+    }
    @Test
     public void testGetCentralAngle() {
         Assert.assertEquals(2.18384117, s1.getCentralAngle(s3), epsilon);

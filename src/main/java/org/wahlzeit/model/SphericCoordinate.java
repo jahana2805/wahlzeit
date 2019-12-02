@@ -80,10 +80,10 @@ public class SphericCoordinate extends AbstractCoordinate {
         assert radius > 0;
         assert Double.isFinite(phi);
         assert phi >= 0;
-        assert phi <= 180.0;
+        assert phi <= 360.0;
         assert Double.isFinite(theta);
         assert theta >= 0;
-        assert theta <= 360.0;
+        assert theta <= 180.0;
     }
     /**
      * Method where actually comparisons of two coordinates' values are performed

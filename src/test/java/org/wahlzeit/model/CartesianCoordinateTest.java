@@ -21,7 +21,33 @@ public class CartesianCoordinateTest {
         c3 = new CartesianCoordinate(2.9, 3.9, 9.9);
         isNull = null;
     }
+    @Test(expected = AssertionError.class)
+    public void testXIsInfinity() {
+        new CartesianCoordinate(Double.POSITIVE_INFINITY, 2.5, 5.5);
+    }
 
+    @Test(expected = AssertionError.class)
+    public void testXIsDoubleNaN() {
+        new CartesianCoordinate(Double.NaN, 2.5 , 5.5);
+    }
+    @Test(expected = AssertionError.class)
+    public void testYIsInfinity() {
+        new CartesianCoordinate(2.5, Double.POSITIVE_INFINITY, 5.5);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testYIsDoubleNaN() {
+        new CartesianCoordinate(2.5 , Double.NaN,5.5);
+    }
+    @Test(expected = AssertionError.class)
+    public void testZIsInfinity() {
+        new CartesianCoordinate(2.5, 5.5, Double.POSITIVE_INFINITY);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testZIsDoubleNaN() {
+        new CartesianCoordinate(2.5 , 5.5, Double.NaN);
+    }
     @Test
     public void testGetCartesianDistance__equalC() {
         double actual = c1.getCartesianDistance(c2);
