@@ -1,37 +1,43 @@
 package org.wahlzeit.model;
 
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.tools.cloudstorage.GcsFilename;
 import org.wahlzeit.services.LogBuilder;
-import org.wahlzeit.services.OfyService;
 
 import java.util.logging.Logger;
 
+/**
+ * Factory that creates car photos
+ */
 public class CarPhotoFactory extends PhotoFactory{
 
     private static final Logger log = Logger.getLogger(CarPhotoFactory.class.getName());
     private static CarPhotoFactory instance = null;
-    private String filename;
 
+    /**
+     * constructor
+     */
     protected CarPhotoFactory() {
         super();
     }
 
-
+    /**
+     * Hidden singleton instance; needs to be initialized from the outside.
+     */
     public static void initialize() {
         getInstance();
     }
-
+    /**
+     * Public singleton access method.
+     */
     public static synchronized CarPhotoFactory getInstance() {
         if (instance == null) {
             log.config(LogBuilder.createSystemMessage().addAction("setting generic CarPhotoFactory").toString());
             setInstance(new CarPhotoFactory());
         }
-
         return instance;
     }
-
-
+    /**
+     * Method to set the singleton instance of CarPhotoFactory.
+     */
     protected static synchronized void setInstance(CarPhotoFactory carphotoFactory) {
         if (instance != null) {
             throw new IllegalStateException("attempt to initalize CarPhotoFactory twice");
@@ -40,16 +46,35 @@ public class CarPhotoFactory extends PhotoFactory{
         instance = carphotoFactory;
     }
 
-
-    public CarPhoto createPhoto(String brand, String model, String color) {
-        return new CarPhoto(brand, model, color);
+    /**
+     * factory
+     * @throws CreateCarPhotoException
+     */
+    public CarPhoto createPhoto(String brand, String model, String color) throws CreateCarPhotoException {
+        CarPhoto carPhoto = null;
+        try {
+            carPhoto = new CarPhoto(brand, model, color);
+        } catch(IllegalArgumentException e) {
+            throw new CreateCarPhotoException(e);
+        }
+        return carPhoto;
     }
-
-    public CarPhoto createPhoto(PhotoId id, String brand, String model, String color) {
-        return new CarPhoto(id, brand, model, color);
+    /**
+     * Creates a new photo with the id
+     * @throws CreateCarPhotoException
+     */
+    public CarPhoto createPhoto(PhotoId id, String brand, String model, String color) throws CreateCarPhotoException {
+        CarPhoto carPhoto = null;
+        try {
+            carPhoto = new CarPhoto(id, brand, model, color);
+        } catch(IllegalArgumentException e) {
+            throw new CreateCarPhotoException(e);
+        }
+        return carPhoto;
     }
-
-
+    /**
+     * Loads photo by its id
+     */
     @Override
     public CarPhoto loadPhoto(PhotoId id) {
         return (CarPhoto)super.loadPhoto(id);

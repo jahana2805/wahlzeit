@@ -1,8 +1,5 @@
 package org.wahlzeit.model;
 
-import com.google.appengine.api.images.Image;
-
-import java.io.IOException;
 import java.util.logging.Logger;
 
 public class CarPhotoManager extends PhotoManager {
@@ -11,11 +8,6 @@ public class CarPhotoManager extends PhotoManager {
 
     public static CarPhotoManager getInstance() {
         return instance;
-    }
-
-    @Override
-    protected boolean doHasPhoto(PhotoId id) {
-        return super.doHasPhoto(id);
     }
 
     @Override
@@ -32,7 +24,5 @@ public class CarPhotoManager extends PhotoManager {
     public void loadPhotos() {
         super.loadPhotos();
     }
-    public void savePhoto(CarPhoto carPhoto) {
-        super.savePhoto(carPhoto);
-    }
+
 }

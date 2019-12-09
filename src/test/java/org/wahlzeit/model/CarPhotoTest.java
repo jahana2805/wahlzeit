@@ -37,4 +37,4 @@ public class CarPhotoTest {
     public void testColorIsEmptyException() {
         CarPhoto carModelEmpty = new CarPhoto("Ferrari", "Enzo", "");
     }
-}
+   }

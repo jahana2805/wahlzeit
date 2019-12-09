@@ -48,10 +48,16 @@ public class PhotoUtil {
 		int sourceWidth = uploadedImage.getWidth();
 		int sourceHeight = uploadedImage.getHeight();
 		result.setWidthAndHeight(sourceWidth, sourceHeight);
-
 		return result;
 	}
-
+	public static CarPhoto createCarPhoto(String filename, PhotoId id, Image uploadedImage, String brand, String model, String color) throws Exception {
+		Photo carResult = createPhoto(filename, id, uploadedImage);
+		if(!(carResult instanceof CarPhoto)) {
+			throw new CreateCarPhotoException("Created photo is not instance of CarPhoto!");
+		}
+		CarPhoto newCarResult = (CarPhoto)carResult;
+		return newCarResult;
+	}
 	/**
 	 *
 	 */
@@ -106,5 +112,7 @@ public class PhotoUtil {
 
 		log.config(LogBuilder.createSystemMessage().addParameter("Scaled image to size", size.asString()).toString());
 	}
+
+
 
 }

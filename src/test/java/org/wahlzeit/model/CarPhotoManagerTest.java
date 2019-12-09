@@ -1,18 +1,12 @@
 package org.wahlzeit.model;
 
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
-import com.googlecode.objectify.ObjectifyService;
-import org.junit.*;
+import org.junit.ClassRule;
+import org.junit.Test;
 import org.junit.rules.RuleChain;
-
-import org.wahlzeit.services.Session;
 import org.wahlzeit.testEnvironmentProvider.LocalDatastoreServiceTestConfigProvider;
 import org.wahlzeit.testEnvironmentProvider.RegisteredOfyEnvironmentProvider;
 import java.io.IOException;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 
 public class CarPhotoManagerTest {
@@ -25,6 +19,7 @@ public class CarPhotoManagerTest {
     public void testInitialize() {
         CarPhotoManager.getInstance().init();
     }
+
     @Test
     public void testCarPhotoManager() throws IOException {
         CarPhotoManager carPhotoManager = new CarPhotoManager();

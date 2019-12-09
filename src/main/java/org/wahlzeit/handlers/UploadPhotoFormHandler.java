@@ -34,9 +34,13 @@ import java.util.logging.Logger;
  * A handler class for a specific web form.
  */
 public class UploadPhotoFormHandler extends AbstractWebFormHandler {
+	public static final String brand = "Ferrari";
+	public static final String model = "Enzo";
+	public static final String color = "red";
+
+
 
 	private static Logger log = Logger.getLogger(UploadPhotoFormHandler.class.getName());
-
 	/**
 	 *
 	 */
@@ -71,7 +75,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			String fileName = us.getAsString(args, "fileName");
 			User user = (User) us.getClient();
 			Image uploadedImage = user.getUploadedImage();
-			Photo photo = pm.createPhoto(fileName, uploadedImage);
+			CarPhoto photo = pm.createCarPhoto(fileName, uploadedImage, brand, model, color);
 
 			user.addPhoto(photo);
 
@@ -88,9 +92,11 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 					addParameter("ID", photo.getId().asString()).toString());
 
 			AsyncTaskExecutor.savePhotoAsync(photo.getId().asString());
-		} catch (Exception ex) {
+		} catch (CreateCarPhotoException ex) {
 			log.warning(LogBuilder.createSystemMessage().addException("uploading photo failed", ex).toString());
 			us.setMessage(config.getPhotoUploadFailed());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
