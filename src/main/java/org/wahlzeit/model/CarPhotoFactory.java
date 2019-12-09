@@ -55,7 +55,7 @@ public class CarPhotoFactory extends PhotoFactory{
         try {
             carPhoto = new CarPhoto(brand, model, color);
         } catch(IllegalArgumentException e) {
-            throw new CreateCarPhotoException(e);
+            throw new CreateCarPhotoException("Couldn't create a CarPhoto in CarPhotoFactory(" + e.getMessage() + ")");
         }
         return carPhoto;
     }
@@ -68,7 +68,7 @@ public class CarPhotoFactory extends PhotoFactory{
         try {
             carPhoto = new CarPhoto(id, brand, model, color);
         } catch(IllegalArgumentException e) {
-            throw new CreateCarPhotoException(e);
+            throw new CreateCarPhotoException("Couldn't create a CarPhoto by id in CarPhotoFactory(" + e.getMessage() + ")");
         }
         return carPhoto;
     }

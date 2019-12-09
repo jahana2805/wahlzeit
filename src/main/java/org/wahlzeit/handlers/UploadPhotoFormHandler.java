@@ -34,11 +34,9 @@ import java.util.logging.Logger;
  * A handler class for a specific web form.
  */
 public class UploadPhotoFormHandler extends AbstractWebFormHandler {
-	public static final String brand = "Ferrari";
-	public static final String model = "Enzo";
-	public static final String color = "red";
-
-
+	public String brand;
+	public String model;
+	public String color;
 
 	private static Logger log = Logger.getLogger(UploadPhotoFormHandler.class.getName());
 	/**
