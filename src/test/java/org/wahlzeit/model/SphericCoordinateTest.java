@@ -16,9 +16,9 @@ public class SphericCoordinateTest {
 
     @Before
     public void setup() {
-        s1 = new SphericCoordinate(180.0,45.0,900);
-        s2 = new SphericCoordinate(180.0,45.0,900);
-        s3 = new SphericCoordinate(90.0,90.0,1000);
+        s1 = SphericCoordinate.getInstance(180.0,45.0,900);
+        s2 = SphericCoordinate.getInstance(180.0,45.0,900);
+        s3 = SphericCoordinate.getInstance(90.0,90.0,1000);
         isNull = null;
     }
     @Test(expected = AssertionError.class)
@@ -94,7 +94,7 @@ public class SphericCoordinateTest {
         assertFalse(s1.hashCode() == o1.hashCode());}
     @Test
     public void testEquals__Same(){
-        assertTrue(s1.equals(s2));
+        assertTrue(s1 == s2);
         assertTrue(s1.hashCode() == s2.hashCode());}
     @Test
     public void testEquals__Diff(){
@@ -117,4 +117,5 @@ public class SphericCoordinateTest {
     public void testGetCartesianDistance_Exception() {
         s1.getCartesianDistance(isNull);
     }
+
 }

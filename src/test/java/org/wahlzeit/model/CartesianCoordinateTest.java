@@ -16,9 +16,9 @@ public class CartesianCoordinateTest {
 
     @Before
     public void setup() {
-        c1 = new CartesianCoordinate(1.1, 2.5, 5.5);
-        c2 = new CartesianCoordinate(1.1, 2.5, 5.5);
-        c3 = new CartesianCoordinate(2.9, 3.9, 9.9);
+        c1 = CartesianCoordinate.getInstance(1.1,2.5,5.5);
+        c2 = CartesianCoordinate.getInstance(1.1, 2.5, 5.5);
+        c3 = CartesianCoordinate.getInstance(2.9, 3.9, 9.9);
         isNull = null;
     }
     @Test(expected = AssertionError.class)
@@ -76,12 +76,12 @@ public class CartesianCoordinateTest {
     public void testEquals__Obj() {
         Object o1 = new Object();
         assertFalse(c1.equals(o1));
-        assertFalse(c1.hashCode() == o1.hashCode());
+       assertFalse(c1.hashCode() == o1.hashCode());
     }
 
     @Test
     public void testEquals__Same() {
-        assertTrue(c1.equals(c2));
+        Assert.assertEquals(c2, c1);
         assertTrue(c1.hashCode() == c2.hashCode());
     }
 
@@ -119,6 +119,7 @@ public class CartesianCoordinateTest {
     public void testGetCartesianDistance_Exception() {
             c1.getCentralAngle(isNull);
         }
+
     }
 
 

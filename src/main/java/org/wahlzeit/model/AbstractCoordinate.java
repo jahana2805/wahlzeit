@@ -56,21 +56,15 @@ public abstract class AbstractCoordinate implements Coordinate {
 
         }
     /**
-     * Overridden equals() method checks if obj is instance of Coordinate and then calls isEqual() method for further equality checks
+     * Checks whether obj and this have the same value, not necessarily being the same object
+     * Subclasses are shared value object classes,
      *
      * @param obj
      * @return is calling method doIsEqual for further equality checks if @param obj is instance of Coordinate
      */
     @Override
     public boolean equals(Object obj) {
-        assertClassInvariants();
-        assertCoordinateIsNotNull(obj);
-        if (!(obj instanceof Coordinate)) {
-            return false;
-        }
-            Coordinate c = (Coordinate) obj;
-            assertClassInvariants();
-            return isEqual(c);
+            return this == obj;
         }
 
     /**
