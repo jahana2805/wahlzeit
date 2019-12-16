@@ -10,10 +10,10 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @return Cartesian distance between @param coordinate and this
      */
     @Override
-    public double getCartesianDistance(Coordinate coordinate) {
+    public final double getCartesianDistance(Coordinate coordinate) {
         assertClassInvariants();
         assertCoordinateIsNotNull(coordinate);
-            double distance = Math.sqrt(Math.pow(Math.abs(this.asCartesianCoordinate().getX() - coordinate.asCartesianCoordinate().getX()), 2) + Math.pow(Math.abs(this.asCartesianCoordinate().getY() - coordinate.asCartesianCoordinate().getY()), 2) + Math.pow(Math.abs(this.asCartesianCoordinate().getZ() - coordinate.asCartesianCoordinate().getZ()), 2));
+            final double distance = Math.sqrt(Math.pow(Math.abs(this.asCartesianCoordinate().getX() - coordinate.asCartesianCoordinate().getX()), 2) + Math.pow(Math.abs(this.asCartesianCoordinate().getY() - coordinate.asCartesianCoordinate().getY()), 2) + Math.pow(Math.abs(this.asCartesianCoordinate().getZ() - coordinate.asCartesianCoordinate().getZ()), 2));
             assert Double.isFinite(distance);
             assert distance >= 0;
             assertClassInvariants();
@@ -42,12 +42,12 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @return Central angle between @param coordinate and this
      */
     @Override
-    public double getCentralAngle(Coordinate coordinate) {
+    public final double getCentralAngle(Coordinate coordinate) {
         assertClassInvariants();
         assertCoordinateIsNotNull(coordinate);
-            double delta_phi = Math.abs(this.asSphericCoordinate().phi - coordinate.asSphericCoordinate().getPhi());
-            double delta_theta = Math.abs(this.asSphericCoordinate().theta - coordinate.asSphericCoordinate().getTheta());
-            double angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(delta_phi / 2), 2) + Math.cos(this.asSphericCoordinate().phi) * Math.cos(coordinate.asSphericCoordinate().getPhi()) * Math.pow(Math.sin(delta_theta / 2), 2)));
+            final double delta_phi = Math.abs(this.asSphericCoordinate().phi - coordinate.asSphericCoordinate().getPhi());
+            final double delta_theta = Math.abs(this.asSphericCoordinate().theta - coordinate.asSphericCoordinate().getTheta());
+            final double angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(delta_phi / 2), 2) + Math.cos(this.asSphericCoordinate().phi) * Math.cos(coordinate.asSphericCoordinate().getPhi()) * Math.pow(Math.sin(delta_theta / 2), 2)));
             assert angle > 0;
             assert angle < 2 * Math.PI;
             assert Double.isFinite(angle);
