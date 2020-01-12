@@ -22,6 +22,7 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 
@@ -46,6 +47,9 @@ public class PhotoFactory {
 	/**
 	 * Hidden singleton instance; needs to be initialized from the outside.
 	 */
+	@PatternInstance(
+			name = "Singleton", participants = { "PhotoFactory"}
+			)
 	public static void initialize() {
 		getInstance(); // drops result due to getInstance() side-effects
 	}
@@ -76,6 +80,10 @@ public class PhotoFactory {
 	/**
 	 * @methodtype factory
 	 */
+	@PatternInstance(
+			name = "FactoryMethod",
+			participants = { "PhotoFactory", "CarPhotoFactory", "Photo", "CarPhoto"}
+			)
 	public Photo createPhoto() {
 		return new Photo();
 	}
@@ -83,6 +91,10 @@ public class PhotoFactory {
 	/**
 	 * Creates a new photo with the specified id
 	 */
+	@PatternInstance(
+			name = "FactoryMethod",
+			participants = { "PhotoFactory", "CarPhotoFactory", "Photo", "CarPhoto"}
+			)
 	public Photo createPhoto(PhotoId id) {
 		return new Photo(id);
 	}

@@ -72,12 +72,6 @@ public class CarPhotoFactory extends PhotoFactory{
         }
         return carPhoto;
     }
-    /**
-     * Loads photo by its id
-     */
-    @Override
-    public CarPhoto loadPhoto(PhotoId id) {
-        return (CarPhoto)super.loadPhoto(id);
-    }
+
 }
 

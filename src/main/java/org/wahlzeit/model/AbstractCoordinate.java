@@ -1,7 +1,14 @@
 package org.wahlzeit.model;
+
+import org.wahlzeit.utils.PatternInstance;
+
 /**
  * Abstract superclass for Coordinate implementations.
  */
+@PatternInstance(
+        name = "TemplateMethod",
+        participants = { "AbstractCoordinate", "CartesianCoordinate", "SphericCoordinate" }
+        )
 public abstract class AbstractCoordinate implements Coordinate {
     /**
      * Get Cartesian distance between two coordinates
@@ -57,7 +64,7 @@ public abstract class AbstractCoordinate implements Coordinate {
         }
     /**
      * Checks whether obj and this have the same value, not necessarily being the same object
-     * Subclasses are shared value object classes,
+     * Subclasses are shared value object classes
      *
      * @param obj
      * @return is calling method doIsEqual for further equality checks if @param obj is instance of Coordinate

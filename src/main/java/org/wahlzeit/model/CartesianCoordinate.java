@@ -1,11 +1,17 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import java.util.HashMap;
 
 /**
  * Cartesian coordinate represents a coordinate system that specifies each point
  * uniquely in a plane by a set of points: x, y, z
  */
+@PatternInstance(
+        name = "Flyweight",
+        participants = {"CartesianCoordinate"}
+)
 public final class CartesianCoordinate extends AbstractCoordinate {
     private final double x;
     private final double y;

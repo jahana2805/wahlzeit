@@ -51,10 +51,6 @@ public class CarPhotoFactoryTest {
     public void testNullColorThrowsException() throws CreateCarPhotoException {
         CarPhotoFactory.getInstance().createPhoto("Ferrari", "Enzo", null);
     }
-    @Test
-    public void testLoadPhoto() throws CreateCarPhotoException {
-        CarPhotoFactory carPhotoFactory = new CarPhotoFactory();
-        CarPhoto carPhoto = carPhotoFactory.createPhoto(new PhotoId(123456),"Ferrari", "Enzo", "red");
-    carPhotoFactory.loadPhoto(new PhotoId(123456));}
+
     }
 
