@@ -5,10 +5,7 @@ import org.wahlzeit.utils.PatternInstance;
 /**
  * Abstract superclass for Coordinate implementations.
  */
-@PatternInstance(
-        name = "TemplateMethod",
-        participants = { "AbstractCoordinate", "CartesianCoordinate", "SphericCoordinate" }
-        )
+
 public abstract class AbstractCoordinate implements Coordinate {
     /**
      * Get Cartesian distance between two coordinates
@@ -16,6 +13,10 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @param coordinate
      * @return Cartesian distance between @param coordinate and this
      */
+    @PatternInstance(
+            name = "TemplateMethod",
+            participants = { "AbstractCoordinate", "CartesianCoordinate", "SphericCoordinate" }
+    )
     @Override
     public final double getCartesianDistance(Coordinate coordinate) {
         assertClassInvariants();
@@ -48,6 +49,10 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @param coordinate
      * @return Central angle between @param coordinate and this
      */
+    @PatternInstance(
+            name = "TemplateMethod",
+            participants = { "AbstractCoordinate", "CartesianCoordinate", "SphericCoordinate" }
+    )
     @Override
     public final double getCentralAngle(Coordinate coordinate) {
         assertClassInvariants();
