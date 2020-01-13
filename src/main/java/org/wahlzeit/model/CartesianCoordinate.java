@@ -8,10 +8,7 @@ import java.util.HashMap;
  * Cartesian coordinate represents a coordinate system that specifies each point
  * uniquely in a plane by a set of points: x, y, z
  */
-@PatternInstance(
-        name = "Flyweight",
-        participants = {"CartesianCoordinate"}
-)
+
 public final class CartesianCoordinate extends AbstractCoordinate {
     private final double x;
     private final double y;
@@ -40,6 +37,9 @@ public final class CartesianCoordinate extends AbstractCoordinate {
      * @param z
      * @return a value object with indicated values
      */
+    @PatternInstance(
+            name = "Singleton", participants = { "CartesianCoordinate"}
+    )
     public final static CartesianCoordinate getInstance(double x, double y, double z) {
         final int hashed = hashHelper(x,y,z);
         if (instances.get(hashed) == null) {

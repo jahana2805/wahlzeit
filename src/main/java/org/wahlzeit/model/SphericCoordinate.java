@@ -1,5 +1,7 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import java.util.HashMap;
 
 /**
@@ -34,6 +36,9 @@ public final class SphericCoordinate extends AbstractCoordinate {
      * @param radius
      * @return a value object with indicated values
      */
+    @PatternInstance(
+            name = "Singleton", participants = { "SphericalCoordinate"}
+    )
     public final static SphericCoordinate getInstance(double phi, double theta, double radius) {
         final int hashed = hashHelper(phi, theta, radius);
         if (instances.get(hashed) == null) {
