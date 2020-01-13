@@ -42,7 +42,7 @@ import java.util.logging.Logger;
  */
 @PatternInstance(
 		name = "Adapter",
-		participants = {"DatastoreAdapter", "ImageStorage", "PhotoManager"}
+		participants = {"PhotoFactory"}
 		)
 public class DatastoreAdapter extends ImageStorage {
 

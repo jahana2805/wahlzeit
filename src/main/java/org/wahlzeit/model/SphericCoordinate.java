@@ -37,7 +37,7 @@ public final class SphericCoordinate extends AbstractCoordinate {
      * @return a value object with indicated values
      */
     @PatternInstance(
-            name = "Singleton", participants = { "SphericalCoordinate"}
+            name = "Singleton", participants = { "SphericCoordinate"}
     )
     public final static SphericCoordinate getInstance(double phi, double theta, double radius) {
         final int hashed = hashHelper(phi, theta, radius);
