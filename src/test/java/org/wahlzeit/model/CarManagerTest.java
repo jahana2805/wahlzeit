@@ -1,17 +1,24 @@
 package org.wahlzeit.model;
 
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
-
-import static org.junit.Assert.assertNotNull;
+import org.junit.rules.RuleChain;
+import org.wahlzeit.testEnvironmentProvider.LocalDatastoreServiceTestConfigProvider;
+import org.wahlzeit.testEnvironmentProvider.RegisteredOfyEnvironmentProvider;
 
 public class CarManagerTest {
     private CarManager carManager = null;
+    @ClassRule
+    public static RuleChain ruleChain = RuleChain.outerRule(new LocalDatastoreServiceTestConfigProvider()).around(new RegisteredOfyEnvironmentProvider());
+
+
 
     @Before
     public void setup() {
         carManager = CarManager.getInstance();
-        assertNotNull(carManager);
+        Assert.assertNotNull(carManager);
     }
 
     @Test(expected = IllegalArgumentException.class)

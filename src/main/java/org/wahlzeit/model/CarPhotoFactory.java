@@ -22,9 +22,8 @@ public class CarPhotoFactory extends PhotoFactory{
     /**
      * Hidden singleton instance; needs to be initialized from the outside.
      */
-    public static void initialize() {
-        getInstance();
-    }
+
+
     /**
      * Public singleton access method.
      */
@@ -50,10 +49,10 @@ public class CarPhotoFactory extends PhotoFactory{
      * factory
      * @throws CreateCarPhotoException
      */
-    public CarPhoto createPhoto(String brand, String model, String color) throws CreateCarPhotoException {
+    public CarPhoto createPhoto(Car car) throws CreateCarPhotoException {
         CarPhoto carPhoto = null;
         try {
-            carPhoto = new CarPhoto(brand, model, color);
+            carPhoto = new CarPhoto(car);
         } catch(IllegalArgumentException e) {
             throw new CreateCarPhotoException("Couldn't create a CarPhoto in CarPhotoFactory(" + e.getMessage() + ")");
         }
@@ -63,10 +62,10 @@ public class CarPhotoFactory extends PhotoFactory{
      * Creates a new photo with the id
      * @throws CreateCarPhotoException
      */
-    public CarPhoto createPhoto(PhotoId id, String brand, String model, String color) throws CreateCarPhotoException {
+    public CarPhoto createPhoto(PhotoId id, Car car) throws CreateCarPhotoException {
         CarPhoto carPhoto = null;
         try {
-            carPhoto = new CarPhoto(id, brand, model, color);
+            carPhoto = new CarPhoto(id, car);
         } catch(IllegalArgumentException e) {
             throw new CreateCarPhotoException("Couldn't create a CarPhoto by id in CarPhotoFactory(" + e.getMessage() + ")");
         }

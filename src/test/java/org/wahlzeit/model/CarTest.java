@@ -1,13 +1,20 @@
 package org.wahlzeit.model;
 
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
+import org.wahlzeit.testEnvironmentProvider.LocalDatastoreServiceTestConfigProvider;
+import org.wahlzeit.testEnvironmentProvider.RegisteredOfyEnvironmentProvider;
 
 public class CarTest {
+    @ClassRule
+    public static RuleChain ruleChain = RuleChain.outerRule(new LocalDatastoreServiceTestConfigProvider()).around(new RegisteredOfyEnvironmentProvider());
+
     private CarManager carManager;
     private CarType carType;
     private String typeName;
-    private String color;
+    private CarType typeNameNull = null;
 
 
     @Before
@@ -15,19 +22,19 @@ public class CarTest {
         carManager = CarManager.getInstance();
         typeName = "Typename";
         carType = carManager.createType(typeName,"Ferrari", "Enzo");
-        color = "red";
-    }
-
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructorThrowsExceptionOnNullCarType() {
-        Car car = new Car(null, color, carManager);
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructorThrowsAssertionErrorOnNullCarManager() {
 
-        Car car = new Car(carType, color,null);
+    @Test
+    public void testConstructorThrowsExceptionOnNullCarType() throws CreateCarPhotoException {
+        Car car = new Car(typeNameNull, carManager, "red");
+
+    }
+
+    @Test
+    public void testConstructorThrowsAssertionErrorOnNullCarManager() throws CreateCarPhotoException {
+
+        Car car = new Car(carType, null, "red");
     }
 }

@@ -4,84 +4,49 @@ import com.googlecode.objectify.annotation.Subclass;
 
 @Subclass
 public class CarPhoto extends Photo {
-
-private String brand;
-private String model;
-private String color;
-
+private Car car = null;
+    public CarPhoto() {
+        super();
+    }
     /**
      * constructor
      *
-     * @param brand
-     * @param model
-     * @param color
+     * @param car
      */
-    public CarPhoto(String brand, String model, String color){
+    public CarPhoto(Car car){
         super();
-        assertValueIsNotNull(brand);
-        assertValueIsNotNull(model);
-        assertValueIsNotNull(color);
-    this.brand = brand;
-    this.model = model;
-    this.color = color;
-       assertClassInvariants();
+        assertValueIsNotNull(car);
+
+    this.car = car;
+
 }
-    private void assertValueIsNotNull(String str){
-        if(str == null || str.isEmpty()) {
+    private void assertValueIsNotNull(Object o){
+        if(o == null) {
             throw new IllegalArgumentException("Shouldn't be null!");
         }
     }
-    private void assertClassInvariants() {
-        assertValueIsNotNull(brand);
-        assertValueIsNotNull(model);
-        assertValueIsNotNull(color);
-    }
+
 
     /**
      * constructor with ID
      *
      * @param id
-     * @param brand
-     * @param model
-     * @param color
+     * @param car
      */
-    public CarPhoto(PhotoId id, String brand, String model, String color){
+    public CarPhoto(PhotoId id, Car car){
         super(id);
-
-        assertValueIsNotNull(brand);
-        assertValueIsNotNull(model);
-        assertValueIsNotNull(color);
-
+assertValueIsNotNull(id);
+assertValueIsNotNull(car);
         this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.color = color;
-        assertClassInvariants();
+        this.car = car;
     }
     /**
-     * Get brand value.
+     * Displays the car.
      *
-     * @return brand value of CarPhoto.
+     * @return car object.
      */
-    public String getBrand(){
-       return brand;
+    public Car getCar(){
+       return this.car;
     }
-    /**
-     * Get model value.
-     *
-     * @return model value of CarPhoto.
-     */
-    public String getModel(){
-        return model;
-    }
-    /**
-     * Get color value.
-     *
-     * @return color value of CarPhoto.
-     */
-    public String getColor(){
-        return color;
-    }
-
 
 }

@@ -1,27 +1,36 @@
 package org.wahlzeit.model;
 
 import com.googlecode.objectify.annotation.Id;
+import org.wahlzeit.services.DataObject;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-public class Car {
+public class Car extends DataObject {
     @Id
-    private final long id;
-    private static AtomicLong nextId = new AtomicLong();
+    private long id;
+    private static AtomicLong nextId = new AtomicLong(0);
 
     private CarType carType;
     private CarManager carManager;
     private String color;
 
-    public Car(CarType carType, String color, CarManager carManager) {
-        assertValueIsNotNull(carManager);
-        assertValueIsNotNull(carType);
+    public Car(CarType carType, CarManager carManager, String color) {
+
         this.carType = carType;
-        this.color = color;
         this.carManager = carManager;
+        this.color = color;
         this.id = Car.getId();
     }
+    /**
+     * Set manufacturing color.
+     *
+     * @param color
+     */
 
+    public void setColor(String color) {
+        assertValueIsNotNullEmpty(color);
+        this.color = color;
+    }
     public static Long getId() {
         return nextId.getAndIncrement();
     }
@@ -40,9 +49,10 @@ public class Car {
     public String getBrand(){
         return this.getCarType().getBrand();
     }
-    private void assertValueIsNotNull(Object o) {
-        if (o == null) {
-            throw new IllegalArgumentException("Shouldn't be null!");
+
+    private void assertValueIsNotNullEmpty(String str) {
+        if (str == null || str.isEmpty()) {
+            throw new IllegalArgumentException("Shouldn't be null or empty!");
         }
     }
 }

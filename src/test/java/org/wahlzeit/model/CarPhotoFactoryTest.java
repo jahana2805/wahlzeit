@@ -1,16 +1,27 @@
 package org.wahlzeit.model;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.wahlzeit.testEnvironmentProvider.LocalDatastoreServiceTestConfigProvider;
 import org.wahlzeit.testEnvironmentProvider.RegisteredOfyEnvironmentProvider;
 
+import static junit.framework.TestCase.assertTrue;
+
 public class CarPhotoFactoryTest {
     @ClassRule
     public static RuleChain ruleChain = RuleChain.outerRule(new LocalDatastoreServiceTestConfigProvider()).around(new RegisteredOfyEnvironmentProvider());
+    private CarManager carManager = null;
+    private Car car = null;
 
+
+    @Before
+    public void setup() {
+        carManager = CarManager.getInstance();
+        car = carManager.createCar("sportscar", "red", carManager);
+    }
     @Test
     public void testInitialization(){
         CarPhotoFactory.initialize();
@@ -23,34 +34,24 @@ public class CarPhotoFactoryTest {
     }
     @Test
     public void testCreatePhotoWithId() throws CreateCarPhotoException {
-        CarPhotoFactory carPhotoFactory = new CarPhotoFactory();
-        CarPhoto carPhoto = carPhotoFactory.createPhoto(new PhotoId(123456), "Ferrari", "Enzo", "red");
+        CarPhotoFactory carPhotoFactory = CarPhotoFactory.getInstance();
+        CarPhoto carPhoto = carPhotoFactory.createPhoto(new PhotoId(123456),car);
         Assert.assertEquals(carPhoto.getId().asInt(),123456);
-        Assert.assertEquals(carPhoto.getBrand(),"Ferrari");
-        Assert.assertEquals(carPhoto.getModel(),"Enzo");
-        Assert.assertEquals(carPhoto.getColor(),"red");
+        Assert.assertEquals(carPhoto.getCar().getBrand(), car.getBrand());
+        Assert.assertEquals(carPhoto.getCar().getModel(),car.getModel());
+        Assert.assertEquals(carPhoto.getCar().getColor(), car.getColor());
     }
     @Test
     public void testCreatePhotoWithoutId() throws CreateCarPhotoException {
-        CarPhotoFactory carPhotoFactory = new CarPhotoFactory();
-        CarPhoto carPhoto = carPhotoFactory.createPhoto("Ferrari", "Enzo", "red");
-        Assert.assertEquals(carPhoto.getBrand(),"Ferrari");
-        Assert.assertEquals(carPhoto.getModel(),"Enzo");
-        Assert.assertEquals(carPhoto.getColor(),"red");
-    }
-    @Test(expected = CreateCarPhotoException.class)
-    public void testNullBrandThrowsException() throws CreateCarPhotoException {
-        CarPhotoFactory.getInstance().createPhoto(null, "Enzo", "red");
+        CarPhotoFactory carPhotoFactory = CarPhotoFactory.getInstance();
+        CarPhoto carPhoto = carPhotoFactory.createPhoto(car);
+        assertTrue(carPhoto instanceof CarPhoto);
+        Assert.assertEquals(carPhoto.getCar().getBrand(),car.getBrand());
+        Assert.assertEquals(carPhoto.getCar().getModel(),car.getModel());
+        Assert.assertEquals(carPhoto.getCar().getColor(), car.getColor());
     }
 
-    @Test(expected = CreateCarPhotoException.class)
-    public void testNullModelThrowsException() throws CreateCarPhotoException {
-        CarPhotoFactory.getInstance().createPhoto(new PhotoId(123456),"Ferrari", null, "red");
-    }
-    @Test(expected = CreateCarPhotoException.class)
-    public void testNullColorThrowsException() throws CreateCarPhotoException {
-        CarPhotoFactory.getInstance().createPhoto("Ferrari", "Enzo", null);
-    }
+
 
     }
 

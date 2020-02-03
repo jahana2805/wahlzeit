@@ -56,6 +56,9 @@ public class PhotoUtil {
 			throw new CreateCarPhotoException("Created photo is not instance of CarPhoto!");
 		}
 		CarPhoto newCarResult = (CarPhoto)carResult;
+		newCarResult.getCar().getCarType().setBrand(brand);
+		newCarResult.getCar().getCarType().setModel(model);
+		newCarResult.getCar().setColor(color);
 		return newCarResult;
 	}
 	/**
