@@ -30,7 +30,7 @@ public class CarPhotoManagerTest {
     public void setup() throws CreateCarPhotoException {
         carManager = CarManager.getInstance();
         carType = carManager.createType("sportscar","Ferrari", "Enzo");
-        car = carManager.createCar("sportscar", "red", carManager);
+        car = carManager.createCar("sportscar", "red");
 
          }
 

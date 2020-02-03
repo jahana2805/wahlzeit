@@ -1,7 +1,14 @@
 package org.wahlzeit.model;
 
 import com.googlecode.objectify.annotation.Subclass;
-
+/**
+ *
+ * Instantiation process of a CarPhoto:
+ * In CarPhoto, CarPhotoFactory, CarPhotoManager object was created by the use of Factory Method.
+ * It starts with initialize() method(initialization) in CarPhotoFactory,
+ * then calls singleton getInstance()(instantiation), which is calling setInstance();
+ * then methods createPhoto(), which are Factory methods, are implemented on subclass CarPhotoFactory.
+ */
 @Subclass
 public class CarPhoto extends Photo {
 private Car car = null;

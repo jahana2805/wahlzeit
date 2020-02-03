@@ -18,10 +18,17 @@ public class CarManager extends ObjectManager {
 
         return instance;
     }
+    public Car createCar(CarType carType) {
+        return doCreateCar(carType.getTypeName());
+    }
+    public Car createCar(String carTypeName, String color) {
 
-    public Car createCar(String carTypeName, String color, CarManager carManager) {
-      assertValueIsNotNullEmpty(carTypeName);
-
+            Car newCar = doCreateCar(carTypeName);
+            newCar.setColor(color);
+            return newCar;
+        }
+    private Car doCreateCar(String carTypeName) {
+        assertValueIsNotNullEmpty(carTypeName);
         CarType ct = this.getCarType(carTypeName);
         Car result = ct.createInstance(color);
         cars.put(result.getId(), result);
@@ -29,7 +36,7 @@ public class CarManager extends ObjectManager {
     }
     public CarType getCarType(String carTypeName){
         if (carTypeHashMap.containsKey(carTypeName)){
-       return carTypeHashMap.get(carTypeName);
+        return carTypeHashMap.get(carTypeName);
         }else{
             CarType newCarType = new CarType(carTypeName);
             this.carTypeHashMap.put(carTypeName, newCarType);
@@ -66,6 +73,7 @@ public class CarManager extends ObjectManager {
 
     private CarType doCreateCarType(CarType carType) {
             carTypeHashMap.put(carType.getTypeName(), carType);
+        assert(this.carTypeHashMap.containsKey(carType.getTypeName()));
             return carType;
         }
 

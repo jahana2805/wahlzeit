@@ -4,7 +4,16 @@ import com.googlecode.objectify.annotation.Id;
 import org.wahlzeit.services.DataObject;
 
 import java.util.concurrent.atomic.AtomicLong;
-
+/**
+ *
+ * Instantiation process of a Car:
+ * The process starts in CarManager, by calling getInstance() singleton method;
+ * for creating CarType instance is used method createInstance(),
+ * method doCreateCarType() serves for product trader pattern by adding new types(subtype, supertype, etc.)
+ * in the same CarManager class, by using hashmap, for thread-safe implementation.
+ * method doCreateCar() also serves as a product trader pattern for methods: createCar(String carTypeName) and
+ * createCar(CarType carType) with different properties.
+ */
 public class Car extends DataObject {
     @Id
     private long id;

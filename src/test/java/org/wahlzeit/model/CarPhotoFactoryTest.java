@@ -20,7 +20,7 @@ public class CarPhotoFactoryTest {
     @Before
     public void setup() {
         carManager = CarManager.getInstance();
-        car = carManager.createCar("sportscar", "red", carManager);
+        car = carManager.createCar("sportscar", "red");
     }
     @Test
     public void testInitialization(){
