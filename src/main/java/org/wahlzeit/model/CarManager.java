@@ -3,6 +3,10 @@ package org.wahlzeit.model;
 import org.wahlzeit.services.ObjectManager;
 
 import java.util.HashMap;
+/** Manager collaboration
+ * Centralize object management in one place
+ */
+
 
 public class CarManager extends ObjectManager {
     private HashMap<String, CarType> carTypeHashMap = new HashMap<>();

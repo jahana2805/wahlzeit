@@ -9,6 +9,11 @@ import com.googlecode.objectify.annotation.Subclass;
  * then calls singleton getInstance()(instantiation), which is calling setInstance();
  * then methods createPhoto(), which are Factory methods, are implemented on subclass CarPhotoFactory.
  */
+
+/** Client-Node-Collaboration
+ * provide main domain functionality
+ */
+
 @Subclass
 public class CarPhoto extends Photo {
 private Car car = null;

@@ -2,6 +2,9 @@ package org.wahlzeit.model;
 
 import org.wahlzeit.services.DataObject;
 
+/** Type object collaboration
+ * Provide information common to all instances of a type
+ */
 public class CarType extends DataObject {
 
     private String typeName = null;
